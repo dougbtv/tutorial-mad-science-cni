@@ -6,6 +6,8 @@ From [this kubecon tutorial session](https://kccncna2024.sched.com/event/1i7kI?i
 
 > Ready to make Kubernetes networking a little easier and a lot more fun? Join Doug for an experiment in configuring CNI (Container Networking Interface) using generative AI. Despite being advised by data scientists to avoid automating machine configurations with generative AI, Doug went into the mad scientist's lab (err, basement) and tested how often a workflow could generate CNI configurations that would establish network connectivity between pods – and the success rate might surprise you. In this session, you'll automate CNI configurations using a large language model (LLM) and gain experience with a nifty tech stack: Ollama for running a containerized LLM, Kubernetes, CNI, and some script wizardry to create your own auto-configurator. Best yet? No prior CNI or AI/ML knowledge needed, and you'll learn along the way! Just in case, have contingency plans ready should any Skynet or Space Odyssey 2001 scenarios arise during the tutorial.
 
+The recording is available [here](https://youtu.be/tEVoXKtymIA?si=rHv_5ujUM2cbej70).
+
 ## Goal
 
 Spin up a [KIND (kubernetes in Docker)](https://kind.sigs.k8s.io/) cluster that uses [CNI (container network interface)](https://github.com/containernetworking) configurations generated from an LLM, and we'll test to see if there's connectivity over that network.
@@ -377,7 +379,7 @@ Then a screen for run
 
 ```
 screen -S ollama-run
-LLAMA_HOST=0.0.0.0:8080 ollama run codegemma:7b
+OLLAMA_HOST=0.0.0.0:8080 ollama run codegemma:7b
 ```
 
 Or run a different model, like so:
@@ -445,11 +447,3 @@ Now we can run it for 5 runs...
 ```
 looprobocni -host $OHOST -model $MODEL -introspect -port $OPORT -promptfile /tmp/prompts.txt --runs 5
 ```
-
-
-## Personal notes (to be removed!)
-
-```
-ansible-playbook -i inventory/bonemt.virthost.inventory -e "@./inventory/kubecondemo.env" 02_setup_vm.yml
-```
-
